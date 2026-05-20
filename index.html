@@ -227,6 +227,61 @@
     }
     .section-title em { font-style: italic; color: var(--terracota); }
 
+    /* ── CAROUSEL ── */
+    .carousel {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .carousel-slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.35s ease;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center top;
+      flex-shrink: 0;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.85);
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      z-index: 2;
+    }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dot.active { background: #fff; }
+
     /* ── PRODUCTS ── */
     .products-grid {
       display: grid;
@@ -425,50 +480,141 @@
     <p class="section-label">Lo nuevo</p>
     <h2 class="section-title">La colección de este <em>invierno</em></h2>
     <div class="products-grid">
+
+      <!-- Chomba Clair -->
       <div class="product-card">
-        <div class="product-img" style="background-image:url('chomba-clair.jpg');background-size:cover;background-position:center;"></div>
+        <div class="carousel" id="car-clair">
+          <div class="carousel-slides">
+            <div class="carousel-slide" style="background-image:url('chomba-clair.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-clair-2.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-clair-3.jpg')"></div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('car-clair',-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveCarousel('car-clair',1)">&#8250;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goToSlide('car-clair',0)"></div>
+            <div class="dot" onclick="goToSlide('car-clair',1)"></div>
+            <div class="dot" onclick="goToSlide('car-clair',2)"></div>
+          </div>
+        </div>
         <div class="product-info">
           <span class="product-badge">Tendencia</span>
           <p class="product-name">Chomba Clair</p>
           <p class="product-price">Consultá precio →</p>
         </div>
       </div>
+
+      <!-- Chomba Polo -->
       <div class="product-card">
-        <div class="product-img" style="background-image:url('chomba-polo.jpg');background-size:cover;background-position:center;"></div>
+        <div class="carousel" id="car-polo">
+          <div class="carousel-slides">
+            <div class="carousel-slide" style="background-image:url('chomba-polo.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-polo-2.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-polo-3.jpg')"></div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('car-polo',-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveCarousel('car-polo',1)">&#8250;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goToSlide('car-polo',0)"></div>
+            <div class="dot" onclick="goToSlide('car-polo',1)"></div>
+            <div class="dot" onclick="goToSlide('car-polo',2)"></div>
+          </div>
+        </div>
         <div class="product-info">
           <span class="product-badge">Nuevo</span>
           <p class="product-name">Chomba Polo</p>
           <p class="product-price">Consultá precio →</p>
         </div>
       </div>
+
+      <!-- Chomba Tini -->
       <div class="product-card">
-        <div class="product-img" style="background-image:url('chomba-tini.jpg');background-size:cover;background-position:center;"></div>
+        <div class="carousel" id="car-tini">
+          <div class="carousel-slides">
+            <div class="carousel-slide" style="background-image:url('chomba-tini.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-tini-2.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-tini-3.jpg')"></div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('car-tini',-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveCarousel('car-tini',1)">&#8250;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goToSlide('car-tini',0)"></div>
+            <div class="dot" onclick="goToSlide('car-tini',1)"></div>
+            <div class="dot" onclick="goToSlide('car-tini',2)"></div>
+          </div>
+        </div>
         <div class="product-info">
           <p class="product-name">Chomba Tini</p>
           <p class="product-price">Consultá precio →</p>
         </div>
       </div>
+
+      <!-- Chomba Emilia -->
       <div class="product-card">
-        <div class="product-img" style="background-image:url('chomba-emilia.jpg');background-size:cover;background-position:center;"></div>
+        <div class="carousel" id="car-emilia">
+          <div class="carousel-slides">
+            <div class="carousel-slide" style="background-image:url('chomba-emilia.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-emilia-2.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-emilia-3.jpg')"></div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('car-emilia',-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveCarousel('car-emilia',1)">&#8250;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goToSlide('car-emilia',0)"></div>
+            <div class="dot" onclick="goToSlide('car-emilia',1)"></div>
+            <div class="dot" onclick="goToSlide('car-emilia',2)"></div>
+          </div>
+        </div>
         <div class="product-info">
           <p class="product-name">Chomba Emilia</p>
           <p class="product-price">Consultá precio →</p>
         </div>
       </div>
+
+      <!-- Chomba Cayetana -->
       <div class="product-card">
-        <div class="product-img" style="background-image:url('chomba-cayetana.jpg');background-size:cover;background-position:center;"></div>
+        <div class="carousel" id="car-cayetana">
+          <div class="carousel-slides">
+            <div class="carousel-slide" style="background-image:url('chomba-cayetana.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-cayetana-2.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('chomba-cayetana-3.jpg')"></div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('car-cayetana',-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveCarousel('car-cayetana',1)">&#8250;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goToSlide('car-cayetana',0)"></div>
+            <div class="dot" onclick="goToSlide('car-cayetana',1)"></div>
+            <div class="dot" onclick="goToSlide('car-cayetana',2)"></div>
+          </div>
+        </div>
         <div class="product-info">
           <p class="product-name">Chomba Cayetana</p>
           <p class="product-price">Consultá precio →</p>
         </div>
       </div>
+
+      <!-- Cardigan -->
       <div class="product-card">
-        <div class="product-img" style="background-image:url('cardigan.jpg');background-size:cover;background-position:center;"></div>
+        <div class="carousel" id="car-cardigan">
+          <div class="carousel-slides">
+            <div class="carousel-slide" style="background-image:url('cardigan.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('cardigan-2.jpg')"></div>
+            <div class="carousel-slide" style="background-image:url('cardigan-3.jpg')"></div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('car-cardigan',-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveCarousel('car-cardigan',1)">&#8250;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goToSlide('car-cardigan',0)"></div>
+            <div class="dot" onclick="goToSlide('car-cardigan',1)"></div>
+            <div class="dot" onclick="goToSlide('car-cardigan',2)"></div>
+          </div>
+        </div>
         <div class="product-info">
           <p class="product-name">Cardigan</p>
           <p class="product-price">Consultá precio →</p>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -547,6 +693,25 @@
   </footer>
 
   <script>
+
+    const carState = {};
+    function moveCarousel(id, dir) {
+      const car = document.getElementById(id);
+      const slides = car.querySelectorAll('.carousel-slide');
+      if (!carState[id]) carState[id] = 0;
+      carState[id] = (carState[id] + dir + slides.length) % slides.length;
+      updateCarousel(id);
+    }
+    function goToSlide(id, idx) {
+      carState[id] = idx;
+      updateCarousel(id);
+    }
+    function updateCarousel(id) {
+      const car = document.getElementById(id);
+      car.querySelector('.carousel-slides').style.transform = `translateX(-${carState[id] * 100}%)`;
+      car.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === carState[id]));
+    }
+
     function enviarPedido() {
       const nombre = document.getElementById('nombre').value.trim() || 'alguien';
       const prenda = document.getElementById('prenda').value || 'una prenda';
